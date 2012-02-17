@@ -1,0 +1,26 @@
+<html>
+<head>
+<script>
+/*globals window console*/
+// http://code.google.com/p/chromium/issues/detail?id=17325
+window.addEventListener('DOMContentLoaded', function() {
+var xFrame = window.document.getElementById('xFrame');
+  xFrame.addEventListener('load', function() {
+    console.log("xFrame load event");
+  }, false);
+}, false);
+window.addEventListener('load', function() {
+  var xFrame = window.document.getElementById('xFrame');
+  try {
+    xFrame.contentWindow.start && xFrame.contentWindow.start();
+    console.log("tried xFrame.contentWindow.start and no exception was thrown");
+  } catch (exc) {
+    console.error("xFrame.contentWindow.start exception "+exc, exc);
+  }
+}, false);
+</script>
+</head>
+<body>
+<iframe id='xFrame' src="http://example.com"></iframe>
+</body>
+</html>

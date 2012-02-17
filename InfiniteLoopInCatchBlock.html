@@ -1,0 +1,22 @@
+<html>
+<head>
+<script>
+Error.prepareStackTrace = function(error, structuredStackTrace) {
+  var text = "";
+  var blanks = -64; // buggy value
+  while (blanks--) {
+    text += " ";
+  }
+};
+
+function test() {
+  try {
+    throw new Error("crash");
+  } catch (exc) {
+    console.log("err "+exc, exc.stack);
+  }
+}
+test();
+</script>
+</head>
+</html>

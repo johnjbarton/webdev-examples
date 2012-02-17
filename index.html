@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>WebDev-Examples</title>
+<script src="closeOverArgument.js"></script>
+</head>
+<body>
+<h1><a href="https://github.com/johnjbarton/webdev-examples">WebDev-Examples</a></h1>
+<dl>
+<dt><button class="testCase">closeOverArgument</button></dt>
+<dd>Given <code>object[name].apply(object, value)</code>, find the source code that defined the current value of the <code>object</code></dd>
+</dl>
+<script>
+/*globals window*/
+window.addEventListener('load', function() {
+  var tests = document.querySelectorAll('.testCase');
+  for (var i = 0; i < tests.length; i++) {
+    tests[i].addEventListener('click', function(event) {
+      var testcase = event.target.innerHTML;
+      window[testcase].call();
+    }, false);
+  }
+}, false);
+  
+</script>
+</body>
+
+</html>
