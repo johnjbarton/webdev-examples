@@ -1,0 +1,39 @@
+<html>
+<head>
+<script>
+function improvedConsoleError() {
+  var args = Array.prototype.slice.call(arguments);
+  args.forEach(function(arg) {
+    if (arg instanceof Error) {
+      var stack = arg.stack;
+      arg.theStack = stack.split('\n');
+    }
+  });
+
+  console.error.apply(console, args);
+}
+function haveAnException() {
+  throw new Error("where am i?");
+}
+function catchExceptions() {
+  try {
+    haveAnException();
+  } catch(exc) {
+    console.log("Try to find the line number of the exception:")
+    console.error(exc);
+    console.log("Now try to find the line number of the exception:")
+    improvedConsoleError(exc);
+  }
+}
+catchExceptions();
+</script>
+</head>
+<body>
+<h1>Render the stack trace in console.error()</h1>
+<p>The V8 Error object stores the stack trace in memory:
+<a href="http://code.google.com/p/v8/wiki/JavaScriptStackTraceApi">http://code.google.com/p/v8/wiki/JavaScriptStackTraceApi</a>.
+The stack is not rendered into a string until the getter 'stack' is called. This makes the DevTools console.error() close to worthless. </p>
+<p>Open the devtools on this page. There will be two error outputs, one with a stack and one without. 
+Only one of them helps isolate the correct line where error occurs.</p>
+</body>
+</html>
