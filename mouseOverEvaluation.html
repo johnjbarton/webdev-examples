@@ -1,0 +1,33 @@
+<html>
+<head>
+<script>
+var outer = {
+  inner: {
+    one: 1,
+    two: 2
+  }
+};
+var arr = [];
+arr.push(1);
+arr.push(2);
+
+function foo() {
+  var reach = outer.inner.one;           // mouse over 'one', see nothing
+  for(var i = 0; i < arr.length; i++) {  // mouse over length see '0'
+    console.log('arr['+i+']='+arr[i]);   // set a breakpoint here
+  }
+  return reach;
+}
+foo();
+</script>
+</head>
+<body>
+<h1>Mouseover evaluation fails in 19.0.1049.3 dev</h1>
+<ol>
+<li>Load this page and open devtools, script panel</li>
+<li>set a break point on the console.log statement</li>
+<li>Mouse over 'one', should see a value, nothing</li>
+<li>Mouse over 'length', should see 2, gives 0</li>
+</ol>
+</body>
+</html>
