@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
   moveMe = document.querySelector('.moveMe');
   
   // check the value
-  var after = moveMe.testProperty;
+  var after = moveMe.contentWindow.testProperty;
   if (after && before === after) {
     testResult.innerHTML = "The test PASSED";
   } else {
