@@ -1,0 +1,42 @@
+<html>
+<head>
+<script>
+window.addEventListener('load', function() {
+
+  // An iframe that sets the value '1' on window.testProperty
+  var moveMe = document.querySelector('.moveMe');
+
+  // record the current value
+  var before = moveMe.contentWindow.testProperty;
+  if (before !== 1) {
+    throw new Error("Test setup fails, before must be 1");
+  }
+  
+  // append the iframe in a different branch of the DOM tree
+  var testResult = document.querySelector('.testResult');
+  testResult.nextElementSibling.appendChild(moveMe);
+  
+  moveMe = document.querySelector('.moveMe');
+  
+  // check the value
+  var after = moveMe.testProperty;
+  if (after && before === after) {
+    testResult.innerHTML = "The test PASSED";
+  } else {
+    testResult.innerHTML = "The test FAILED, property is "+after;
+  }
+
+});
+</script>
+</head>
+<body>
+<h1 class='testResult'>The test has not completed</h1>
+<div>
+</div>
+<p>Expected: The test PASSED Actual: The test FAILED</p>
+
+<p>This iframe is moved to below the title, using appendChild.
+It's contentWindow property should be the same before and after the move</p>
+<iframe class='moveMe' src='theMovingIframe.html'></iframe>
+</body>
+</html>

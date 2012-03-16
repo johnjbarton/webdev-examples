@@ -1,0 +1,45 @@
+<html>
+<head>
+<script>
+window.addEventListener('load', function() {
+
+      var url = 'http://localhost:8080/file/R/XHRErrorMessageFailure.html';
+      //var url = 'http://ucommbieber.unl.edu/CORS/cors.php';
+
+      var xhr = new XMLHttpRequest(); 
+      xhr.open('GET', url, true);
+
+      function resolve(event) {
+        document.querySelector('.data').innerHTML = event.currentTarget.responseText;
+      }
+      function reject(event) {
+        document.querySelector('.err').innerHTML = event.currentTarget.responseText;
+      }
+      xhr.addEventListener('error', reject, false);
+      xhr.addEventListener('abort', reject, false);
+      xhr.addEventListener('load', resolve, false);
+      xhr.onerror = reject;
+      xhr.onabort = reject;
+      xhr.withCredentials = true;
+       xhr.onreadystatechange = function(event) {
+        console.log("onreadystatechange ", arguments);
+      };
+      xhr.send();
+});
+</script>
+</head>
+<body>
+<p>
+When we issue an XHR to a CORS enabled site, we can get errors. 
+In Chrome Version 19.0.1061.1 dev these errors come out in the console. 
+Thus developers have no way to tell users about the problem. 
+</p>
+
+<p>Expected: An error message. Actual: Nothing</p>
+
+<h2>Here is where our data will go:</h2>
+<div class='data'></div>
+<h2>Here is where our error message will go:</h2>
+<div class='err'></div>
+</body>
+</html>

@@ -7,3 +7,5 @@ function writeOnPage() {
 }
 
 window.addEventListener('load', writeOnPage, false);
+
+// Check this
