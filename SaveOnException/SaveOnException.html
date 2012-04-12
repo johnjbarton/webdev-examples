@@ -1,0 +1,15 @@
+<html>
+<head>
+<script src='SaveOnException.js'></script>
+</head>
+<body>
+<ol>
+<li>Open devtools, select Script Panel, set Pause on all Exceptions, </li>
+<li>Reload. You should halt on a line 8 obj.inot() </li>
+<li>Change 'inot' to 'init', then hit Control S to save</li>
+</ol>
+<p>Expected: "pass" prints in the console</p>
+<p>Actual: "Uncaught LiveEdit Failure: Unknown structure of stack above changing function" in console</p>
+
+</body>
+</html>
