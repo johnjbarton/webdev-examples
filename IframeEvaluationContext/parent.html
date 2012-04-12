@@ -1,0 +1,12 @@
+<html>
+<body>
+<ol>
+<li>Open devtools, select Script Panel, set Pause on all Exceptions, </li>
+<li>Reload. You should halt on a line 8 obj.inot() </li>
+<li>Open the command line and enter 'window.location.toString()'</li>
+</ol>
+<p>Expected: The window location printed will match the value of the iframe selector at the bottom of the UI</p>
+<p>Actual: The selector does not track the context, it stays on 'top frame'</p>
+<iframe src="IframeEvaluationContext.html"></iframe>
+</body>
+</html>
