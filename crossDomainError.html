@@ -21,6 +21,18 @@ window.addEventListener('load', function() {
 </script>
 </head>
 <body>
+<ol>
+<li>Open Devtools, Scripts panel, set a breakpoint on line 15 <code>xFrame.contentWindow.start</code>....</li>
+<li>Reload</li>
+<li>When the breakpoint hits, open the command line</li>
+<li>Type xFrame.contentWindow.location.toString()</li>
+</ol>
+<p>Excepted: just the window URL</p>
+<p>Actual: reams of:
+ <blockquote> Unsafe JavaScript attempt to access frame with URL http://www.iana.org/domains/example/ from frame with URL http://localhost:8080/file/R/crossDomainError.html. Domains, protocols and ports must match.</blockquote>
+ </p>
+<p>Note that change the frame selector to xFrame(www.iana.org) does not help</p>
+
 <iframe id='xFrame' src="http://example.com"></iframe>
 </body>
 </html>
