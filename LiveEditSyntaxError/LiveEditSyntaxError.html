@@ -1,0 +1,19 @@
+<html>
+<head>
+<script src='LiveEditSyntaxError.js'></script>
+</head>
+<body>
+<h1>LiveEdit needs line numbers on syntax errors</h1>
+<ol>
+<li>Open devtools, select Script Panel, unset Pause on all Exceptions, </li>
+<li>Click on the page. You should stop on line 15 <code>debugger;</code> </li>
+<li>Add a semicolon on line 9 after the comment, Control S to save </li>
+</ol>
+<p>Expected: Console message: "SyntaxError: Unexpected token ';' line 9"</p>
+<p>Actual: "Uncaught LiveEdit Failure: Failed to compile new version of script: SyntaxError: Unexpected token ;'"</p>
+<p>This bug makes multi-point editing with LiveEdit hopeless. If you can't see which token is a problem, then you have 
+to copy and paste your edits into another tool because you cannot save 
+(see bug <a href="http://code.google.com/p/chromium/issues/detail?id=123242">123242</a>)</p>
+
+</body>
+</html>
