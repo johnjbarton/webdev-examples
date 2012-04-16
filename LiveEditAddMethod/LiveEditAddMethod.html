@@ -1,0 +1,19 @@
+<html>
+<head>
+<script src='LiveEditAddMethod.js'></script>
+</head>
+<body>
+<ol>
+<li>Open devtools, select Script Panel, unset Pause on all Exceptions, </li>
+<li>Click on the page. You should get an error on line 14 <code>Foo.bar();</code> </li>
+<li>Remove the comment in front of <code>bar:</code>, Control S to save </li>
+<li>Click on the page again</li>
+</ol>
+<p>Expected: "pass" prints in the console</p>
+<p>Actual: "Uncaught TypeError: Object #<Object> has no method 'bar' " </p>
+<p>This is a bit more of an advanced case for LiveEdit but it seems feasible. This 
+an object change, but addition-only and it is addition to a literal so I guess there
+is a single object Foo.prototype. Anyway, this is another important case for LiveEdit</p>
+
+</body>
+</html>
