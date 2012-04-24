@@ -1,0 +1,37 @@
+<html>
+<head>
+<script>
+function haveAnException() {
+  throw new Error("where am i?");
+}
+function catchExceptions() {
+  try {
+    haveAnException();
+  } catch(exc) {
+    var workaround = exc;
+    console.log("Report an error twice:");
+    function report() {
+      console.error(workaround);
+    }
+    report();
+    setTimeout(report);
+  }
+}
+catchExceptions();
+</script>
+</head>
+<body>
+<h1>Type Error in ConsoleMessage</h1>
+<ol>
+<li>Open devtools on this page, Script Panel, select the .html file</li>
+<li>Reload</li>
+</ol>
+<dl>
+<dt>Expected:</dt>
+<dd>2 Errors on one line</dd>
+<dt>Actual: </dt>
+<dd>One error and a Type Error in the Devtools</dd>
+<dl>
+<p>See patch attached to bug report</p>
+</body>
+</html>
