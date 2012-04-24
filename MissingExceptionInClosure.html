@@ -1,0 +1,27 @@
+<html>
+<head>
+<script>
+function haveAnException() {
+  throw new Error("where am i?");
+}
+function catchExceptions() {
+  try {
+    haveAnException();
+  } catch(exc) {
+    function report() {
+      console.error(exc);
+    }
+    report();
+  }
+}
+catchExceptions();
+</script>
+</head>
+<body>
+<h1>Missing exception object in closure environment</h1>
+<pre>
+Expect: error on line 5
+Actual: bogus error on line 12, Uncaught ReferenceError: exc is not defined.
+</pre>
+</body>
+</html>
