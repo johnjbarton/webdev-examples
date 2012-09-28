@@ -1,0 +1,26 @@
+<html>
+<head>
+<script>
+var ws;
+function sendMessages() {
+    ws = new WebSocket("ws://localhost:9222/devtools/page/187_1230");
+    ws.onclose = function()
+    {
+        console.log("Closed.");
+    };
+    ws.onerror = function(event)
+    {
+        console.error("Error ", event);
+    }
+}
+
+function test() {
+  sendMessages();
+}
+</script>
+</head>
+<body onload="test()">
+<p>Incorrect line file and line number: Unexpected response code: 500 </p>
+<p> You may need an instance of chrome running with --remote-debugging-port:9222</p>
+</body>
+</html>
