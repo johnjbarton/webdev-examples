@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<!--
+Copyright (c) 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<head>
+<title>JavaScript try/catch Failure</title>
+</head>
+<body>
+</body>
+<script>
+document.body.addEventListener('aCustom', function() {
+  throw new Error('flub');
+});
+
+var caught = false;
+try {
+  var event = new CustomEvent('aCustom');
+  document.body.dispatchEvent(event);
+} catch(exc) {
+  caught = true;
+}
+if (!caught)
+  document.body.innerHTML = "Fail!";
+</script>
+</html>
