@@ -1,0 +1,15 @@
+{
+  "name": "BackgroundXHR",
+  "version": "0.1",
+  "manifest_version": 2,
+  "minimum_chrome_version": "22",
+  "description": "Test BackgroundXHR, see console.log output",
+    "background": {
+      "scripts": ["Background.js"]
+    },
+  "permissions": [
+    "http://*/",
+    "https://*/"
+  ],
+  "content_security_policy": "script-src 'self' chrome-extension://fkhgelnmojgnpahkeemhnbjndeeocehc chrome-extension-resource: ; object-src 'self' "
+}
