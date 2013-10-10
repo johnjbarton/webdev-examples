@@ -1,0 +1,31 @@
+
+<template id="commentTemplate">
+    <div>
+        <img src="">
+        <div class="comment-text"></div>
+    </div>
+</template>
+<script>
+function addComment(imageUrl, text) {
+  var t = document.querySelector("#commentTemplate");
+  var comment = t.content.cloneNode(true);
+  // Populate content.
+  comment.querySelector('img').src = imageUrl;
+  comment.querySelector('.comment-text').textContent = text;
+  document.body.appendChild(comment);
+}
+function onload() {
+  addComment(null, "added by JS + template");
+}
+window.addEventListener('load', onload);
+</script>
+<body>
+  <h1><a href="http://www.w3.org/TR/2013/WD-components-intro-20130606/">Templates</a></h1>
+<ol>
+  <li>Open devtools on the Elements Panel.</li>
+  <li>Expand the second <code>div</code>, to see the <code>img</code> tag etc</li>
+  <li>There is no way to know from the devtools UI that this div was added by a <code>template</code></li>
+  <li><b>Devtools should have a link from the <code>div</code> to the <code>template</code> that created it</b></li>
+</ol>
+  <div>Some static content</div>
+</body>
