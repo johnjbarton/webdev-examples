@@ -1,0 +1,40 @@
+<body>
+<h1>Example Shadow DOM</a></h1>
+<ul class="zydeco">
+    <li><a href="//example.com/zydeco/1">A Zydeco dance</a></li>
+    <li><a href="//example.com/zydeco/2">Another Zydeco dance</a></li>
+    <li class="festival"><a href="//example.com/zydeco/3">Huge Fesitival with Zydeco and Cajun Bands</a></li>
+    <li><a href="//example.com/zydeco/4">Yet another Zydeco dance</a></li>
+    <li><a href="//example.com/zydeco/4">Awesome Zydeco dance</a></li>
+    <li class="festival"><a href="//example.com/zydeco/5">Cajun Festival</a></li>
+</ul>
+</body>
+<script>
+function createDanceGroup(className, contentSelector)
+{
+    var group = document.createElement('div');
+    group.className = className;
+    group.innerHTML = '<ul><content select="' + contentSelector + '"></content></ul>';
+    return group;
+}
+
+function createStyle()
+{
+    var style = document.createElement('style');
+    style.textContent = 'div.festival { margin-bottom: 5px; color: Red;font-size: 20px; border: 1px dashed Purple; }' +
+        'div.other { padding: 2px 0 0 0; border: 1px solid purple; }';
+    return style;
+}
+
+function makeShadowTree(danceList)
+{
+    var root = danceList.createShadowRoot();
+    root.appendChild(createStyle());
+    root.appendChild(createDanceGroup('festival', '.festival'));
+    root.appendChild(createDanceGroup('other', ''));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    [].forEach.call(document.querySelectorAll('ul.zydeco'), makeShadowTree);
+});
+</script>
